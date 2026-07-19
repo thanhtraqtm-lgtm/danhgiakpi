@@ -1,0 +1,141 @@
+{
+  "entities": {
+    "Employee": {
+      "title": "Employee",
+      "description": "Employee profile and task records.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the employee."
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the employee."
+        },
+        "role": {
+          "type": "string",
+          "description": "The organizational role."
+        },
+        "department": {
+          "type": "string",
+          "description": "Assigned department or unit."
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Avatar image URL."
+        },
+        "tasks": {
+          "type": "array",
+          "description": "List of KPI civil service tasks."
+        },
+        "selfAssessmentNote": {
+          "type": "string",
+          "description": "Optional notes from the employee self-evaluation."
+        },
+        "departmentHeadAssessmentNote": {
+          "type": "string",
+          "description": "Optional notes from department head."
+        },
+        "managerAssessmentNote": {
+          "type": "string",
+          "description": "Optional notes from the higher management/evaluator."
+        },
+        "evaluationPeriod": {
+          "type": "string",
+          "description": "Period under assessment."
+        },
+        "username": {
+          "type": "string",
+          "description": "Login username."
+        },
+        "password": {
+          "type": "string",
+          "description": "Login password."
+        },
+        "isAdmin": {
+          "type": "boolean",
+          "description": "Admin status toggle."
+        },
+        "orgType": {
+          "type": "string",
+          "description": "Organization classification level."
+        },
+        "selfSignedCA": {
+          "type": "boolean",
+          "description": "Digital signature verification status."
+        },
+        "selfSignedCADate": {
+          "type": "string",
+          "description": "Date of digital signature."
+        },
+        "deptHeadSignedCA": {
+          "type": "boolean",
+          "description": "Digital signature verification status."
+        },
+        "deptHeadSignedCADate": {
+          "type": "string",
+          "description": "Date of digital signature."
+        },
+        "managerSignedCA": {
+          "type": "boolean",
+          "description": "Digital signature verification status."
+        },
+        "managerSignedCADate": {
+          "type": "string",
+          "description": "Date of digital signature."
+        }
+      },
+      "required": ["id", "name"]
+    },
+    "Directives": {
+      "title": "Directives",
+      "description": "A single document wrapper containing a list of all current executive notices and directives.",
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "description": "An array of notices and executive commands."
+        }
+      },
+      "required": ["list"]
+    },
+    "Config": {
+      "title": "Config",
+      "description": "Central system lock and configuration metadata document.",
+      "type": "object",
+      "properties": {
+        "isQuarterLocked": {
+          "type": "boolean",
+          "description": "Lock status of the current quarter's evaluation."
+        },
+        "departments": {
+          "type": "array",
+          "description": "Allowed department labels."
+        },
+        "units": {
+          "type": "array",
+          "description": "Allowed unit/base labels."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp of the last modification."
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/employees/{employeeId}": {
+      "schema": "Employee",
+      "description": "Collection of civil service employees and their registered duties/tasks."
+    },
+    "/directives/{directiveId}": {
+      "schema": "Directives",
+      "description": "Collection hosting system-wide administrative announcements."
+    },
+    "/config/{configId}": {
+      "schema": "Config",
+      "description": "Global operational state and departments configurations."
+    }
+  }
+}

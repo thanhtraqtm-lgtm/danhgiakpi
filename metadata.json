@@ -1,0 +1,8 @@
+{
+  "name": "KPI Dashboard",
+  "description": "A modern, interactive dashboard for tracking Key Performance Indicators and business metrics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

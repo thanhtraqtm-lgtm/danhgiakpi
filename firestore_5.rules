@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net - Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Employees Collection Rules
+    match /employees/{employeeId} {
+      allow read: if true;
+      allow create, update: if request.resource != null 
+        && request.resource.data.id is string
+        && request.resource.data.id.size() > 0
+        && request.resource.data.id.size() <= 128
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 256;
+      allow delete: if true;
+    }
+
+    // 3. Directives Collection Rules
+    match /directives/{directiveId} {
+      allow read: if true;
+      allow create, update: if request.resource != null
+        && request.resource.data.list is list;
+      allow delete: if true;
+    }
+
+    // 4. Config Collection Rules
+    match /config/{configId} {
+      allow read: if true;
+      allow create, update: if request.resource != null;
+      allow delete: if true;
+    }
+  }
+}
