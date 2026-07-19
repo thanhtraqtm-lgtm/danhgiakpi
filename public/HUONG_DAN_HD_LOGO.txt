@@ -1,0 +1,14 @@
+HƯỚNG DẪN THAY ĐỔI LOGO CƠ QUAN
+===================================
+
+Để thay đổi logo hiển thị ở góc trên bên trái của Hệ thống Đánh giá KPI, đồng chí thực hiện như sau:
+
+1. Chuẩn bị 1 tệp ảnh logo của cơ quan, ban ngành (khuyến nghị định dạng vuông, kích thước từ 200x200px trở lên).
+2. Lưu tên ảnh là:
+   - logo.png
+   - HOẶC logo.jpg
+   - HOẶC logo.svg
+3. Tải tệp ảnh này trực tiếp vào thư mục "/public" này (ngay cạnh tệp hướng dẫn này).
+4. Hệ thống sẽ tự động nhận diện ảnh mới và thay thế logo mặc định bằng logo của cơ quan đồng chí.
+
+Nếu không có ảnh logo tùy chỉnh, hệ thống sẽ tự động hiển thị biểu tượng lá chắn bảo mật (Shield) mặc định.
