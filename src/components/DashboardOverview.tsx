@@ -1703,7 +1703,7 @@ export default function DashboardOverview({
               ) : null}
             </div>
             <span className="text-[10px] font-mono text-amber-950 bg-amber-100 px-2.5 py-1 rounded-md font-bold border border-amber-350 shrink-0 self-start sm:self-auto">
-              Duyệt bởi Ban Thường Vụ
+             Lãnh Đạo duyệt
             </span>
           </div>
 
