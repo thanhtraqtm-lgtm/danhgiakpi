@@ -346,7 +346,7 @@ const [unitsRegion2, setUnitsRegion2] = useState<string[]>(() => {
       {
         id: 'dir-1',
         category: 'Chỉ đạo',
-        content: "Kiểm soát chặt chẽ chỉ tiêu thi đua xếp loại 'Xuất sắc', tuyệt đối không vượt quá 20% tổng số cán bộ đạt mức Tốt trở lên theo đúng quy chuẩn Nghị định 48/2023/NĐ-CP.",
+        content: "Kiểm soát chặt chẽ chỉ tiêu thi đua xếp loại 'Xuất sắc', tuyệt đối không vượt quá 20% tổng số cán bộ đạt mức Tốt trở lên theo đúng quy chuẩn Nghị định 335/2025/NĐ-CP.",
         date: "13/07/2026"
       },
       {
