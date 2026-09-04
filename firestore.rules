@@ -1,37 +1,40 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // 1. Global Safety Net - Default Deny
     match /{document=**} {
       allow read, write: if false;
     }
+    
+    // For AI Studio mock app purposes, we allow unauthenticated access 
+    // since Anonymous auth might be disabled in the Firebase project.
+    function isSignedIn() { return true; }
+    
+    function isValidId(id) { return id is string && id.size() <= 128; }
 
-    // 2. Employees Collection Rules
-    match /employees/{employeeId} {
-      allow read: if true;
-      allow create, update: if request.resource != null 
-        && request.resource.data.id is string
-        && request.resource.data.id.size() > 0
-        && request.resource.data.id.size() <= 128
-        && request.resource.data.name is string
-        && request.resource.data.name.size() > 0
-        && request.resource.data.name.size() <= 256;
-      allow delete: if true;
+    match /evaluation_docs/{docId} {
+      allow read, list: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(docId);
+    }
+    
+    match /evaluation_periods/{periodId} {
+      allow read, list: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(periodId);
     }
 
-    // 3. Directives Collection Rules
-    match /directives/{directiveId} {
-      allow read: if true;
-      allow create, update: if request.resource != null
-        && request.resource.data.list is list;
-      allow delete: if true;
+    match /workflow_submissions/{subId} {
+      allow read, list: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(subId);
     }
 
-    // 4. Config Collection Rules
-    match /config/{configId} {
-      allow read: if true;
-      allow create, update: if request.resource != null;
-      allow delete: if true;
+    match /users/{userId} {
+      allow read, list: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(userId);
+    }
+
+    match /kpi_data/{docId} {
+      allow read, list: if isSignedIn();
+      allow create, update, delete: if isSignedIn() && isValidId(docId);
     }
   }
 }
+

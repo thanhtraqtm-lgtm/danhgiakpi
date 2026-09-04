@@ -1,8 +1,6 @@
 {
-  "name": "KPI Dashboard",
-  "description": "A modern, interactive dashboard for tracking Key Performance Indicators and business metrics.",
+  "name": "KPI Evaluation System & Column Mapping Admin",
+  "description": "Hệ thống Quản lý KPI Cục Thống kê - Trang chủ Dashboard tổng quan, Biểu mẫu tự đánh giá và Luồng trình duyệt 2 cấp",
   "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

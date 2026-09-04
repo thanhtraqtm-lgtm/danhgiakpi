@@ -1,141 +1,101 @@
 {
   "entities": {
-    "Employee": {
-      "title": "Employee",
-      "description": "Employee profile and task records.",
+    "SelfAssessmentDoc": {
+      "title": "SelfAssessmentDoc",
+      "description": "User's self assessment evaluation document",
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "The unique identifier of the employee."
-        },
-        "name": {
-          "type": "string",
-          "description": "Full name of the employee."
-        },
-        "role": {
-          "type": "string",
-          "description": "The organizational role."
-        },
-        "department": {
-          "type": "string",
-          "description": "Assigned department or unit."
-        },
-        "avatar": {
-          "type": "string",
-          "description": "Avatar image URL."
-        },
-        "tasks": {
-          "type": "array",
-          "description": "List of KPI civil service tasks."
-        },
-        "selfAssessmentNote": {
-          "type": "string",
-          "description": "Optional notes from the employee self-evaluation."
-        },
-        "departmentHeadAssessmentNote": {
-          "type": "string",
-          "description": "Optional notes from department head."
-        },
-        "managerAssessmentNote": {
-          "type": "string",
-          "description": "Optional notes from the higher management/evaluator."
-        },
-        "evaluationPeriod": {
-          "type": "string",
-          "description": "Period under assessment."
-        },
-        "username": {
-          "type": "string",
-          "description": "Login username."
-        },
-        "password": {
-          "type": "string",
-          "description": "Login password."
-        },
-        "isAdmin": {
-          "type": "boolean",
-          "description": "Admin status toggle."
-        },
-        "orgType": {
-          "type": "string",
-          "description": "Organization classification level."
-        },
-        "selfSignedCA": {
-          "type": "boolean",
-          "description": "Digital signature verification status."
-        },
-        "selfSignedCADate": {
-          "type": "string",
-          "description": "Date of digital signature."
-        },
-        "deptHeadSignedCA": {
-          "type": "boolean",
-          "description": "Digital signature verification status."
-        },
-        "deptHeadSignedCADate": {
-          "type": "string",
-          "description": "Date of digital signature."
-        },
-        "managerSignedCA": {
-          "type": "boolean",
-          "description": "Digital signature verification status."
-        },
-        "managerSignedCADate": {
-          "type": "string",
-          "description": "Date of digital signature."
-        }
+        "userId": { "type": "string" },
+        "periodId": { "type": "string" },
+        "status": { "type": "string", "enum": ["draft", "submitted", "approved", "rejected"] },
+        "docType": { "type": "string", "enum": ["WORD_OFFICIAL", "EXCEL_3SHEETS"] },
+        "fileUrl": { "type": "string" },
+        "fileName": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "managerScore": { "type": "number" },
+        "totalScore": { "type": "number" }
       },
-      "required": ["id", "name"]
+      "required": ["userId", "periodId", "status", "docType", "createdAt"]
     },
-    "Directives": {
-      "title": "Directives",
-      "description": "A single document wrapper containing a list of all current executive notices and directives.",
+    "EvaluationPeriod": {
+      "title": "EvaluationPeriod",
+      "description": "Evaluation period configuration",
       "type": "object",
       "properties": {
-        "list": {
-          "type": "array",
-          "description": "An array of notices and executive commands."
-        }
+        "title": { "type": "string" },
+        "month": { "type": "number" },
+        "year": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "locked"] },
+        "createdAt": { "type": "string" },
+        "lockedAt": { "type": "string" }
       },
-      "required": ["list"]
+      "required": ["title", "month", "year", "status"]
     },
-    "Config": {
-      "title": "Config",
-      "description": "Central system lock and configuration metadata document.",
+    "WorkflowSubmission": {
+      "title": "WorkflowSubmission",
+      "description": "Evaluation workflow submission and approval record",
       "type": "object",
       "properties": {
-        "isQuarterLocked": {
-          "type": "boolean",
-          "description": "Lock status of the current quarter's evaluation."
-        },
-        "departments": {
-          "type": "array",
-          "description": "Allowed department labels."
-        },
-        "units": {
-          "type": "array",
-          "description": "Allowed unit/base labels."
-        },
-        "updatedAt": {
-          "type": "string",
-          "description": "Timestamp of the last modification."
-        }
-      }
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userPosition": { "type": "string" },
+        "department": { "type": "string" },
+        "period": { "type": "string" },
+        "selfScoreTotal": { "type": "number" },
+        "status": { "type": "string" },
+        "submittedAt": { "type": "string" },
+        "deptHeadName": { "type": "string" },
+        "deptHeadComment": { "type": "string" },
+        "deptHeadScore": { "type": "number" },
+        "deptApprovedAt": { "type": "string" },
+        "approverName": { "type": "string" },
+        "approverTitle": { "type": "string" },
+        "provinceLeaderComment": { "type": "string" },
+        "finalScore": { "type": "number" },
+        "finalApprovedAt": { "type": "string" },
+        "evaluationType": { "type": "string" }
+      },
+      "required": ["userName", "department", "period", "status"]
+    },
+    "AppUser": {
+      "title": "AppUser",
+      "description": "User account profile and authentication details",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "position": { "type": "string" },
+        "department": { "type": "string" },
+        "role": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fullName", "username", "department"]
     }
   },
   "firestore": {
-    "/employees/{employeeId}": {
-      "schema": "Employee",
-      "description": "Collection of civil service employees and their registered duties/tasks."
+    "/evaluation_docs/{docId}": {
+      "schema": "SelfAssessmentDoc",
+      "description": "Store assessment documents for each user"
     },
-    "/directives/{directiveId}": {
-      "schema": "Directives",
-      "description": "Collection hosting system-wide administrative announcements."
+    "/evaluation_periods/{periodId}": {
+      "schema": "EvaluationPeriod",
+      "description": "Store system evaluation periods"
     },
-    "/config/{configId}": {
-      "schema": "Config",
-      "description": "Global operational state and departments configurations."
+    "/workflow_submissions/{subId}": {
+      "schema": "WorkflowSubmission",
+      "description": "Store workflow submissions and approvals"
+    },
+    "/users/{userId}": {
+      "schema": "AppUser",
+      "description": "Store user accounts and credentials"
+    },
+    "/kpi_data/{docId}": {
+      "schema": "AppUser",
+      "description": "Store application wide sync envelopes and configuration"
     }
   }
 }
